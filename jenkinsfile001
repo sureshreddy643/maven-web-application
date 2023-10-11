@@ -14,6 +14,7 @@ node{
   sh  "${mavenHome}/bin/mvn clean package"
   
   }
+/*
   stage('SonarQube'){
  
   sh  "${mavenHome}/bin/mvn sonar:sonar"
@@ -43,6 +44,6 @@ suresh''', cc: 'chsureshreddy321@gmail.com', from: '', replyTo: '', subject: 'Bu
 }
   
 
-
+*/
 
 }
