@@ -1,0 +1,48 @@
+node{
+    
+    def mavenHome=tool name:"maven 3.9.5"
+
+  stage('CheckOutCode'){
+   
+   git branch: 'devlopment', credentialsId: '99d14b82-1d8f-405d-860a-f83594469fcb', url: 'https://github.com/sureshreddy643/maven-web-application.git'
+	
+	
+  }
+  
+  stage('Build'){
+ 
+  sh  "${mavenHome}/bin/mvn clean package"
+  
+  }
+  stage('SonarQube'){
+ 
+  sh  "${mavenHome}/bin/mvn sonar:sonar"
+  
+  }
+   stage('Nexus'){
+ 
+  sh  "${mavenHome}/bin/mvn clean deploy"
+  
+  }
+  
+ 
+ stage('DeployAppIntoTomcat'){
+ 
+  sshagent(['7da523f6-ce1d-496e-806f-df3adc8b4d7d']) {
+  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.133.120:/opt/apache-tomcat-8.5.93/webapps/"    
+  
+  
+  }
+  }
+  
+   stage('Email'){
+  mail bcc: '', body: '''Build Over
+
+regards
+suresh''', cc: 'chsureshreddy321@gmail.com', from: '', replyTo: '', subject: 'Build over', to: 'krishnamurthy9753@gmail.com'
+}
+  
+
+
+
+}
