@@ -9,7 +9,7 @@ node{
 	
   }
   
-  stage('Build'){
+  stage('Build3'){
  
   sh  "${mavenHome}/bin/mvn clean package"
   
