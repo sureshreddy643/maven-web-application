@@ -4,7 +4,7 @@ node{
 
   stage('CheckOutCode'){
    
-   git branch: 'devlopment', credentialsId: '99d14b82-1d8f-405d-860a-f83594469fcb', url: 'https://github.com/sureshreddy643/maven-web-application.git'
+   git branch: 'master', credentialsId: '99d14b82-1d8f-405d-860a-f83594469fcb', url: 'https://github.com/sureshreddy643/maven-web-application.git'
 	
 	
   }
@@ -14,6 +14,7 @@ node{
   sh  "${mavenHome}/bin/mvn clean package"
   
   }
+/*
   stage('SonarQube'){
  
   sh  "${mavenHome}/bin/mvn sonar:sonar"
@@ -43,6 +44,6 @@ suresh''', cc: 'chsureshreddy321@gmail.com', from: '', replyTo: '', subject: 'Bu
 }
   
 
-
+*/
 
 }
